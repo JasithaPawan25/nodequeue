@@ -2,9 +2,10 @@ import { generateKey } from "crypto";
 import { Entity,PrimaryGeneratedColumn,Column,BaseEntity, ManyToOne, JoinColumn, OneToMany, Generated, OneToOne } from "typeorm";
 import { Counter } from "./counter";
 import { Issue } from "./issue";
+import { User } from "./user";
 
 @Entity()
-export class Queuee {
+export class Countern extends BaseEntity {
     @PrimaryGeneratedColumn()
     id!:number;
 
@@ -15,13 +16,21 @@ export class Queuee {
     @Column()
     counter_Id!:string;
 
+//     @OneToMany(() => Issue , (issue) => issue.counterx)
+//    //   @JoinColumn({ name: "count_Id" })
+//        issues!: Issue[];
+
+
+    //    @OneToMany(() => Issue, issue => issue.countern)
+    //    issues!: Issue[];
+
     // @ManyToOne(() => Issue)
     // @JoinColumn({ name: "queue_id" })
     //  queue!: string;
 
-    @OneToOne(() => Counter)
-    @JoinColumn({ name: "counter_Id" })
-     counter!: string;
+    // @OneToOne(() => Counter)
+    // @JoinColumn({ name: "counter_Id" })
+    //  counter!: string;
 
     //  @OneToMany(() => Issue, (issue) => issue.queue)
     //  issues!: Issue;

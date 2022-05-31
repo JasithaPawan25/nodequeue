@@ -4,6 +4,7 @@ import jwt from "jsonwebtoken";
 import bcrypt from 'bcrypt';
 import dotenv from 'dotenv';
 import { Count_Person } from "../entities/Cuser";
+import { AppDataSource } from "../app";
 
 dotenv.config();
 
@@ -17,7 +18,7 @@ type loginRequest ={
 
 export class LoginSevice {
     async execute( {uname,upassword}:loginRequest){
-        const repo =getRepository(User);
+        const repo =AppDataSource.getRepository(User);
 
         const user = await repo.findOne({ where: {uname:uname }});
 
@@ -72,13 +73,14 @@ export class LoginSevice {
 
 type ConterloginRequest ={
     cname:string,
-    cpassword:string
+    cpassword:string,
+   // counterNo:string
 }
 
 
 export class LoginCounterSevice {
     async execute( {cname,cpassword}:ConterloginRequest){
-        const repo =getRepository(Count_Person);
+        const repo =AppDataSource.getRepository(Count_Person);
 
         const userc = await repo.findOne({ where: {cname:cname }});
 
@@ -110,7 +112,8 @@ export class LoginCounterSevice {
         const token = jwt.sign({ 
                 id: userc.id, 
                 name: userc.cname, 
-                password: userc.cpassword, 
+                password: userc.cpassword,
+           //     counter:userc.counterNo 
                // type: user.type
             }, 
                 process.env.JWT_SECRET as string,

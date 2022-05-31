@@ -1,11 +1,12 @@
 import { Entity,PrimaryGeneratedColumn,Column,BaseEntity,ManyToOne,JoinColumn } from "typeorm";
+import { Countern } from "./counterx";
 import { Queue } from "./queue";
 // import { Queue } from "./queue";
 
 import {User} from './user';
 
 @Entity()
-export class Issue {
+export class Issue extends BaseEntity {
     @PrimaryGeneratedColumn("increment")
     id!:number;
 
@@ -25,7 +26,10 @@ export class Issue {
     user_id!:string;
 
     @Column()
-    queueId!:string;
+    IssueNo!:string;
+
+    @Column()
+    count_Id!:string;
 
     // @Column()
     // queue_id!:string;
@@ -37,9 +41,17 @@ export class Issue {
      @JoinColumn({ name: "user_id" })
      user!: string;
 
-     @ManyToOne(() => Queue)
-     @JoinColumn({ name: "queueId" })
-      queue!: string;
+    //  @ManyToOne(() => Queue)
+    //  @JoinColumn({ name: "queueId" })
+    //   queue!: string;
+
+      @ManyToOne(() => Countern)
+      @JoinColumn({ name: "count_Id" })
+       counterx!: string;
+
+      //  @ManyToOne(() => Countern, countern => countern.issues)
+      //  countern!: Countern;
+
       // @ManyToOne(() => Queue, (queue) => queue.issues)
       // queue!: Queue;
 

@@ -13,6 +13,9 @@ export class Count_Person extends BaseEntity{
     @Column()
     cpassword!:string;
 
+    // @Column()
+    // counterNo!:string;
+
     @BeforeInsert()
     @BeforeUpdate()
     hashPassword() {

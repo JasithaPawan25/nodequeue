@@ -1,4 +1,5 @@
 import { Any, getRepository } from "typeorm";
+import { AppDataSource } from "../app";
 import { Counter } from "../entities/counter";
 import { Count_Person } from "../entities/Cuser";
 import { Queue } from "../entities/queue";
@@ -15,7 +16,7 @@ type CuserRequest ={
 
 export class CreateCUserService {
     async execute({cname, cpassword}:CuserRequest):Promise<Count_Person | Error> {
-        const repo =getRepository(Count_Person);
+        const repo =AppDataSource.getRepository(Count_Person);
 
         if(await repo.findOne({where: { cname } })) return new Error("User Already Exists")
         

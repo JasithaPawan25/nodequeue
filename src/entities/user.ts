@@ -2,7 +2,7 @@ import { Entity,PrimaryGeneratedColumn,Column,BaseEntity, BeforeInsert, BeforeUp
 import bcrypt from 'bcrypt'
 
 @Entity()
-export class User extends BaseEntity{
+export class User extends BaseEntity {
     @PrimaryGeneratedColumn()
     id!:number;
 
@@ -19,3 +19,5 @@ export class User extends BaseEntity{
     }
 
 }
+
+//extends BaseEntity
